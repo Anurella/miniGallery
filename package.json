@@ -1,7 +1,10 @@
 {
-  "name": "tester",
-  "version": "0.1.0",
   "private": true,
+    "name": "cowrywise",
+    "productName": "Mini Galleria",
+    "description": "It is a developer test challenge",
+    "version": "0.0.0",
+    "license": "MIT",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
