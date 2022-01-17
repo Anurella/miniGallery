@@ -12,7 +12,7 @@
           <div class="content">
             <figure>
               <figcaption>
-                <h3 id="modalTitle">f</h3>
+                <h3 id="modalTitle">Name of Artist</h3>
                 <p class=""></p>
               </figcaption>
             </figure>
