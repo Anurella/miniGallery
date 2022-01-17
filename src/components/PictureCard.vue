@@ -14,36 +14,37 @@
 export default {
   name: "PictureCard",
   props: {
-    item: Object
-  }
+    item: Object,
+  },
 };
 </script>
 
-<style lang="" scoped>
+<style lang="scss" scoped>
 .photo {
   display: grid;
   grid: "a" "a" "a" "a";
   border-radius: 8px;
   overflow: hidden;
   height: 100%;
+
+  &::before {
+    content: "";
+    width: 100%;
+    height: 100%;
+
+    position: absolute;
+    z-index: 1;
+    /* color: hsl(40, 7%, 9%); */
+    background: linear-gradient(
+      to top,
+      hsla(40, 70%, 9%, 0.13) 0,
+      hsla(40, 70%, 9%, 0.23) 3.5%,
+      hsla(40, 70%, 9%, 0.35) 17%,
+      hsla(40, 70%, 9%, 0.4) 0%
+    );
+  }
 }
 
-.photo::before {
-  content: "";
-  width: 100%;
-  height: 100%;
-
-  position: absolute;
-  z-index: 1;
-  /* color: hsl(40, 7%, 9%); */
-  background: linear-gradient(
-    to top,
-    hsla(40, 70%, 9%, 0.13) 0,
-    hsla(40, 70%, 9%, 0.23) 3.5%,
-    hsla(40, 70%, 9%, 0.35) 17%,
-    hsla(40, 70%, 9%, 0.4) 0%
-  );
-}
 img {
   width: 100%;
   height: 100%;

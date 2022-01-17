@@ -14,7 +14,7 @@
 import PictureCard from "./PictureCard.vue";
 export default {
   components: {
-    PictureCard
+    PictureCard,
   },
   data() {
     return {};
@@ -22,7 +22,7 @@ export default {
   computed: {
     galleryList() {
       return this.$store.getters.getGallery;
-    }
+    },
   },
   mounted() {
     this.checkList();
@@ -31,14 +31,13 @@ export default {
     checkList() {
       if (this.$store.state.gallery.length === 0) {
         this.$store.dispatch("createGallery");
-      } else {
       }
-    }
-  }
+    },
+  },
 };
 </script>
 
-<style lang="" scoped>
+<style lang="scss" scoped>
 .mansory {
   display: flex;
   flex-direction: row;
@@ -47,17 +46,29 @@ export default {
   max-width: min(85%, 830px);
   margin: -30px auto 0;
   gap: 20px;
-}
 
-.mansory__item {
-  width: calc(50% - 10px);
-}
+  &__item {
+    width: calc(50% - 10px);
+    @media screen and (max-width: 769px) {
+      height: 250px;
+    }
 
-@media screen and (max-width: 769px) {
-  .mansory__item {
-    height: 250px;
+    @media screen and (min-width: 769px) {
+      width: min(30%, 250px);
+
+      &:nth-child(3n + 1) {
+        order: 1;
+      }
+      &:nth-child(3n + 2) {
+        order: 2;
+      }
+      &:nth-child(3n) {
+        order: 3;
+      }
+    }
   }
 }
+
 @media screen and (min-width: 769px) {
   .mansory {
     flex-flow: column wrap;
@@ -71,19 +82,6 @@ export default {
     flex-basis: 100%;
     width: 0;
     order: 2;
-  }
-  .mansory__item {
-    width: min(30%, 250px);
-    /* flex-grow: 1; */
-  }
-  .mansory__item:nth-child(3n + 1) {
-    order: 1;
-  }
-  .mansory__item:nth-child(3n + 2) {
-    order: 2;
-  }
-  .mansory__item:nth-child(3n) {
-    order: 3;
   }
 }
 </style>

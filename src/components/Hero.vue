@@ -40,17 +40,18 @@ export default {
     return {
       searchTerm: "",
       isLoading: false,
-      isError: false
+      isError: false,
     };
   },
   methods: {
     processForm() {
       this.isLoading = true;
-    }
-  }
+    },
+  },
 };
 </script>
-<style lang="" scoped>
+
+<style scoped>
 section {
   background-color: var(--primary-bg);
   block-size: 300px;

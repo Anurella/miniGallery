@@ -12,7 +12,7 @@ const vuexLocal = new VuexPersistence({
   })
 });
 
-let clientId = process.env.ACCESS_KEY;
+let clientId = process.env.VUE_APP_ACCESS_KEY;
 
 export default new Vuex.Store({
   state: {
@@ -59,7 +59,7 @@ export default new Vuex.Store({
         `);
         let allItems = Object.keys(response.data.results);
         state.currentTerm = criteria;
-        commit("searchedGallery", allBreeds);
+        commit("searchedGallery", allItems);
       } catch (error) {
         console.log(error);
         commit("searchedGallery", []);
