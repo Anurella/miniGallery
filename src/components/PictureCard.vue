@@ -1,5 +1,5 @@
 <template>
-  <figure class="photo">
+  <figure class="photo skeletal__loader">
     <img :src="item.urls.small" alt="" class="photo__img" />
     <figcaption>
       <h3>{{ item.user.first_name }} {{ item.user.last_name }}</h3>
@@ -26,6 +26,7 @@ export default {
   border-radius: 8px;
   overflow: hidden;
   height: 100%;
+  min-height: 200px;
 
   &::before {
     content: "";
@@ -67,6 +68,14 @@ figcaption {
 
   p {
     font-size: 0.9rem;
+  }
+}
+
+.skeletal__loader {
+  img:empty {
+    width: 100%;
+    height: 100%;
+    background: hsl(0, 0%, 96%);
   }
 }
 </style>

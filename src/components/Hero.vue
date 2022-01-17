@@ -26,7 +26,9 @@
       </form>
     </div>
     <div v-if="isLoading" class="loading">
-      <span>Searching for </span><span>"{{ searchTerm }}"</span>
+      <h2>
+        <span>Searching for</span><span> "{{ searchTerm }}"</span>
+      </h2>
     </div>
     <div v-if="isError" class="error">
       <p>We are sorry but your search <b>"{{}}"</b> did not match any breed</p>
@@ -44,14 +46,18 @@ export default {
     };
   },
   methods: {
+    updateState() {
+      this.$emit("isLoading", this.isLoading);
+    },
     processForm() {
       this.isLoading = true;
+      // call the search method
+      this.$store.dispatch("searchGallery", this.searchTerm);
     },
   },
 };
 </script>
-
-<style scoped>
+<style lang="scss" scoped>
 section {
   background-color: var(--primary-bg);
   block-size: 300px;
@@ -67,35 +73,49 @@ section {
   max-width: min(90%, 900px);
 }
 
-.search__input {
-  inline-size: 100%;
-  height: 50px;
-  color: var(--text-color);
-  padding: 0 0 0 55px;
-  border-radius: 4px;
-  border: 1px solid hsl(217, 46%, 74%);
-  outline: none;
-  font-size: 1rem;
-  background-color: var(--body-bg);
-  box-shadow: 0 2px 1px var(--primary-bg) / 0.7,
-    0 4px 2px var(--primary-bg) / 0.7, 0 8px 4px var(--primary-bg) / 0.7,
-    0 16px 8px var(--primary-bg) / 0.7, 0 32px 16px var(--primary-bg) / 0.7,
-    0 64px 32px var(--primary-bg) / 0.7;
-}
+.search {
+  &__input {
+    inline-size: 100%;
+    height: 50px;
+    color: var(--text-color);
+    padding: 0 0 0 55px;
+    border-radius: 4px;
+    border: 1px solid hsl(217, 46%, 74%);
+    outline: none;
+    font-size: 1rem;
+    background-color: var(--body-bg);
+    box-shadow: 0 2px 1px var(--primary-bg) / 0.7,
+      0 4px 2px var(--primary-bg) / 0.7, 0 8px 4px var(--primary-bg) / 0.7,
+      0 16px 8px var(--primary-bg) / 0.7, 0 32px 16px var(--primary-bg) / 0.7,
+      0 64px 32px var(--primary-bg) / 0.7;
 
-.search__input::placeholder {
-  color: currentColor;
-}
+    ::placeholder {
+      color: currentColor;
+    }
+  }
 
-.search__icon {
-  position: absolute;
-  left: 15px;
-  top: calc(50% - 20px / 2);
-  width: 20px;
-  height: 20px;
-}
+  &__icon {
+    position: absolute;
+    left: 15px;
+    top: calc(50% - 20px / 2);
+    width: 20px;
+    height: 20px;
 
-.search__icon path {
-  stroke: var(--stroke);
+    path {
+      stroke: var(--stroke);
+    }
+  }
+}
+.loading {
+  span {
+    font-size: 1.8rem;
+    &:first-child {
+      color: var(--text-color);
+    }
+    &:last-child {
+      color: hsl(216, 15%, 50%);
+      font-weight: normal;
+    }
+  }
 }
 </style>

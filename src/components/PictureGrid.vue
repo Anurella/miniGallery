@@ -5,7 +5,7 @@
       :key="galleria"
       class="mansory__item"
     >
-      <picture-card v-bind:item="item"></picture-card>
+      <picture-card v-bind="item" isLoding></picture-card>
     </article>
   </section>
 </template>
@@ -15,6 +15,9 @@ import PictureCard from "./PictureCard.vue";
 export default {
   components: {
     PictureCard,
+  },
+  props: {
+    isLoading: { Boolean, default: false },
   },
   data() {
     return {};
@@ -70,7 +73,7 @@ export default {
 
   @media screen and (min-width: 769px) {
     flex-flow: column wrap;
-    height: 1200px;
+    height: 1500px;
     justify-content: flex-start;
     align-content: flex-start;
 

@@ -1,7 +1,7 @@
 <template>
   <main>
     <Hero />
-    <PictureGrid />
+    <PictureGrid :is-loading="isLoading" />
   </main>
 </template>
 
@@ -12,8 +12,18 @@ import PictureGrid from "@/components/PictureGrid.vue";
 export default {
   components: {
     Hero,
-    PictureGrid
-  }
+    PictureGrid,
+  },
+  data() {
+    return {
+      isLoading: false,
+    };
+  },
+  methods: {
+    updateState() {
+      this.isLoading = true;
+    },
+  },
 };
 </script>
 

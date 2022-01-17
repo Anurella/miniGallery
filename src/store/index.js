@@ -43,7 +43,7 @@ export default new Vuex.Store({
         //   `https://api.unsplash.com/search/photos?page=1&per_page=8&order_by=latest&query=african&client_id=${clientId}`
         // );
         let response = await axios.get(
-          `https://api.unsplash.com/photos/random?count=9&query=africa&order_by=latest&client_id=${clientId}`
+          `https://api.unsplash.com/photos/random?count=10&query=africa&order_by=latest&client_id=${clientId}`
         );
         console.log(response.data);
         commit("createGallery", response.data);
@@ -54,10 +54,12 @@ export default new Vuex.Store({
     },
     async searchGallery({ state, commit }, criteria) {
       try {
+        
         let response = await axios.get(`
-        https://api.unsplash.com/search/photos?page=1&order_by=latest&query=${criteria}&client_id=${clientId}
+        https://api.unsplash.com/search/photos?page=1&query=${criteria}&client_id=${clientId}
         `);
-        let allItems = Object.keys(response.data.results);
+        
+        let allItems = response.data.results;
         state.currentTerm = criteria;
         commit("searchedGallery", allItems);
       } catch (error) {
