@@ -67,21 +67,20 @@ export default {
       }
     }
   }
-}
 
-@media screen and (min-width: 769px) {
-  .mansory {
+  @media screen and (min-width: 769px) {
     flex-flow: column wrap;
     height: 1200px;
     justify-content: flex-start;
     align-content: flex-start;
-  }
-  .mansory::before,
-  .mansory::after {
-    content: "";
-    flex-basis: 100%;
-    width: 0;
-    order: 2;
+
+    &::before,
+    &::after {
+      content: "";
+      flex-basis: 100%;
+      width: 0;
+      order: 2;
+    }
   }
 }
 </style>

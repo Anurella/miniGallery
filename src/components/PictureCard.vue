@@ -60,14 +60,13 @@ figcaption {
   z-index: 1;
   color: white;
   text-transform: capitalize;
-}
+  h3 {
+    font-size: 1.2rem;
+    font-weight: 500;
+  }
 
-h3 {
-  font-size: 1.2rem;
-  font-weight: 500;
-}
-
-p {
-  font-size: 0.9rem;
+  p {
+    font-size: 0.9rem;
+  }
 }
 </style>
