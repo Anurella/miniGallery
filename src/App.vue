@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div class="wrapper">
     <header>
       <router-link to="/">
         <span>Mini Gallery</span>
@@ -15,9 +15,6 @@
 <script>
 export default {
   name: "App",
-  mounted() {
-    this.$store.dispatch("createGallery");
-  },
 };
 </script>
 
@@ -58,6 +55,12 @@ body {
   background: var(--body-bg);
 }
 
+.wrapper {
+  display: grid;
+  height: 100%;
+  grid-template-rows: auto 1fr auto;
+}
+
 header,
 footer {
   padding: 20px;
@@ -68,10 +71,6 @@ header a {
   font-size: 1.3rem;
   margin-left: 10px;
   color: var(--text-color);
-}
-
-main {
-  padding-block-end: 30px;
 }
 
 footer {

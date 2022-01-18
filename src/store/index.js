@@ -1,16 +1,8 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import axios from "axios";
-import VuexPersistence from "vuex-persist";
 
 Vue.use(Vuex);
-
-const vuexLocal = new VuexPersistence({
-  storage: window.localStorage,
-  reducer: (state) => ({
-    gallery: state.gallery,
-  }),
-});
 
 let clientId = process.env.VUE_APP_ACCESS_KEY;
 
@@ -19,7 +11,7 @@ export default new Vuex.Store({
     gallery: [],
     currentTerm: "",
   },
-  plugins: [vuexLocal.plugin],
+  plugins: [],
   getters: {
     getCurTerm(state) {
       return state.currentTerm;

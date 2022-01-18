@@ -19,13 +19,33 @@ export default {
       isLoading: false,
     };
   },
+  mounted() {
+    this.getCollection();
+  },
   methods: {
     updateLoad(loadState) {
       this.isLoading = loadState;
       console.log("updated", this.isLoading);
     },
+    getCollection() {
+      this.isLoading = true;
+      this.$store
+        .dispatch("createGallery")
+        .then(() => {
+          setTimeout(() => {
+            this.isLoading = false;
+          }, 1000);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
   },
 };
 </script>
 
-<style lang="" scoped></style>
+<style scoped>
+main {
+  padding-block-end: 60px;
+}
+</style>

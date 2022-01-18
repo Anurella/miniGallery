@@ -89,7 +89,10 @@ export default {
 <style lang="scss" scoped>
 section {
   background-color: var(--primary-bg);
-  block-size: 300px;
+  block-size: 200px;
+  @media screen and (min-width: 500px) {
+    block-size: 300px;
+  }
   display: flex;
   justify-content: center;
   align-items: center;
@@ -148,11 +151,14 @@ section {
     }
   }
   button {
-    font-size: 1.4rem;
+    font-size: 0.9rem;
     padding: 0;
-    background-color: transparent;
-    color: var(--black);
+    background-color: var(--text-color);
+    color: var(--white);
     cursor: pointer;
+    width: 30px;
+    height: 28px;
+    align-self: center;
   }
 }
 </style>

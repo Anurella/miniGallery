@@ -42,12 +42,25 @@ export default {
     position: absolute;
     z-index: 1;
     /* color: hsl(40, 7%, 9%); */
-    background: linear-gradient(
+    /* background: linear-gradient(
       to bottom,
       hsla(40, 70%, 9%, 0.13) 0,
       hsla(40, 70%, 9%, 0.23) 3.5%,
       hsla(40, 70%, 9%, 0.35) 17%,
-      hsla(40, 70%, 9%, 0.4) 50%
+      hsla(40, 70%, 9%, 0.4) 60%
+    ); */
+    background-image: linear-gradient(
+      45deg,
+      hsla(39deg 70% 9% / 0.4) 1%,
+      hsla(39deg 70% 9% / 0.4) 43%,
+      hsl(39deg 70% 9% / 0.4) 50%,
+      hsl(39deg 70% 9% / 0.4) 51%,
+      hsl(39deg 70% 9% / 0.4) 51%,
+      hsl(39deg 70% 9% / 0.4) 49%,
+      hsl(39deg 70% 9% / 0.4) 49%,
+      hsl(39deg 70% 9% / 0.4) 50%,
+      hsl(39deg 70% 9% / 0.4) 57%,
+      hsl(39deg 70% 9% / 0.4) 99%
     );
   }
 }

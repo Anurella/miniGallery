@@ -1,6 +1,6 @@
 # Cowrywise Front End Engineer Test
 
-[Link to Requirement](https://www.notion.so/cowrywise/Frontend-Engineer-Test-3a4aeb677c604ca9b41cdac102d2f974)
+[Link to Requirement](https://www.notion.so/cowrywise/Frontend-Engineer-Test-3a4aeb677c604ca9b41cdac102d2f974)| [Link to Demo](https://mini-gallery.netlify.app/)
 
 ## Instruction
 
@@ -13,21 +13,12 @@ Using the [Unsplash API](https://unsplash.com/developers), you're to create a mi
 3. Users should see a skeleton loader while waiting for results
 4. Users can click on an image and see a modal showing a higher res.
 
-### Mockup 1: Landing Screen shows 7 - 8 latest "African"
+### Extras
 
-![Close-up screenshot of the landing](./docs/test.png)
+1. Added a different color scheme for users with Dark mode in OS setting
+   ![Close-up screenshot of the landing in dark mode](./docs/darkmode.png)
 
-### Mockup 2: Search View
-
-![Close-up screenshot of the search](./docs/test_2.png)
-
-### Mockup 3: Loading Placeholders
-
-![Close-up screenshot of the loading placeholder](./docs/test_3.png)
-
-### Mockup 4: Image Modal
-
-![Close-up screenshot of the loading placeholder](./docs/test_4.png)
+2. Added a close button, so a user can reveal the search field without refreshing the page.
 
 ## Project setup
 
