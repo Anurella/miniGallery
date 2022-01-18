@@ -86,7 +86,7 @@ export default {
 
   @media screen and (min-width: 769px) {
     flex-flow: column wrap;
-    height: 1199px;
+    height: 1140px;
     justify-content: flex-start;
     align-content: flex-start;
 

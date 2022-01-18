@@ -32,7 +32,8 @@ export default {
   border-radius: 8px;
   overflow: hidden;
   height: 100%;
-  min-height: 200px;
+  min-height: 250px;
+  max-height: 340px;
 
   &::before {
     content: "";
@@ -46,7 +47,7 @@ export default {
       hsla(40, 70%, 9%, 0.13) 0,
       hsla(40, 70%, 9%, 0.23) 3.5%,
       hsla(40, 70%, 9%, 0.35) 17%,
-      hsla(40, 70%, 9%, 0.4) 0%
+      hsla(40, 70%, 9%, 0.4) 50%
     );
   }
 }
