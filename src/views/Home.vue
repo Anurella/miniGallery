@@ -1,6 +1,6 @@
 <template>
   <main>
-    <Hero />
+    <Hero :is-loading="isLoading" v-on:update-load="updateLoad" />
     <PictureGrid :is-loading="isLoading" />
   </main>
 </template>
@@ -20,8 +20,9 @@ export default {
     };
   },
   methods: {
-    updateState() {
-      this.isLoading = true;
+    updateLoad(loadState) {
+      this.isLoading = loadState;
+      console.log("updated", this.isLoading);
     },
   },
 };

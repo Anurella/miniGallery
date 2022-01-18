@@ -32,7 +32,6 @@ export default {
   --white: hsl(0, 0%, 98.04%);
   --body-bg: hsl(210, 10%, 96.08%);
   --photo-overlay: hsla(40, 7%, 9%, 0.125);
-
   --stroke: hsl(208.24, 100%, 6.67%);
 }
 

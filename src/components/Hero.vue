@@ -1,6 +1,6 @@
 <template>
   <section>
-    <div v-if="!isLoading" class="search">
+    <div v-if="!loadState" class="search">
       <form action="" @submit.prevent="processForm">
         <input
           type="text"
@@ -11,7 +11,6 @@
           name="search"
           class="search__input"
           v-model="searchTerm"
-          @keyup.delete="removeError"
         />
         <svg aria-label="Search Icon" viewBox="0 0 24 24" class="search__icon">
           <path
@@ -25,13 +24,25 @@
         </svg>
       </form>
     </div>
-    <div v-if="isLoading" class="loading">
-      <h2>
-        <span>Searching for</span><span> "{{ searchTerm }}"</span>
-      </h2>
-    </div>
-    <div v-if="isError" class="error">
-      <p>We are sorry but your search <b>"{{}}"</b> did not match any breed</p>
+    <div v-if="loadState" class="result">
+      <template v-if="resultView">
+        <template v-if="isError">
+          <h2>
+            <span>There are no pictures with term</span
+            ><span> "{{ searchTerm }}"</span>
+          </h2>
+          <button @click="refreshPage">x</button>
+        </template>
+        <h2 v-else>
+          <span>Searching for</span><span> "{{ searchTerm }}"</span>
+        </h2>
+      </template>
+      <template v-else>
+        <h2>
+          <span>Searched Results for </span><span> "{{ searchTerm }}"</span>
+        </h2>
+        <button @click="showSearchBar">x</button>
+      </template>
     </div>
   </section>
 </template>
@@ -41,18 +52,36 @@ export default {
   data() {
     return {
       searchTerm: "",
-      isLoading: false,
       isError: false,
+      loadState: this.isLoading,
+      resultView: true,
     };
   },
+  props: {
+    isLoading: Boolean,
+  },
   methods: {
-    updateState() {
-      this.$emit("isLoading", this.isLoading);
-    },
     processForm() {
-      this.isLoading = true;
+      this.loadState = true;
+      this.$emit("update-load", this.loadState);
       // call the search method
-      this.$store.dispatch("searchGallery", this.searchTerm);
+      this.$store.dispatch("searchGallery", this.searchTerm).then(() => {
+        this.resultView = false;
+        this.$emit("update-load", false);
+        if (this.$store.getters.getGallery.length === 0) {
+          this.resultView = true;
+          this.isError = true;
+          this.$emit("update-load", true);
+        }
+      });
+    },
+    showSearchBar() {
+      this.resultView = true;
+      this.searchTerm = "";
+      this.loadState = false;
+    },
+    refreshPage() {
+      location.reload();
     },
   },
 };
@@ -68,7 +97,7 @@ section {
 }
 
 .search,
-.loading {
+.result {
   flex: 1;
   max-width: min(90%, 900px);
 }
@@ -106,16 +135,24 @@ section {
     }
   }
 }
-.loading {
+.result {
+  display: flex;
+  column-gap: 40px;
   span {
     font-size: 1.8rem;
-    &:first-child {
-      color: var(--text-color);
-    }
+    color: var(--text-color);
     &:last-child {
       color: hsl(216, 15%, 50%);
       font-weight: normal;
+      text-transform: capitalize;
     }
+  }
+  button {
+    font-size: 1.4rem;
+    padding: 0;
+    background-color: transparent;
+    color: var(--black);
+    cursor: pointer;
   }
 }
 </style>

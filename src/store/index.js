@@ -7,9 +7,9 @@ Vue.use(Vuex);
 
 const vuexLocal = new VuexPersistence({
   storage: window.localStorage,
-  reducer: state => ({
-    gallery: state.gallery
-  })
+  reducer: (state) => ({
+    gallery: state.gallery,
+  }),
 });
 
 let clientId = process.env.VUE_APP_ACCESS_KEY;
@@ -17,7 +17,7 @@ let clientId = process.env.VUE_APP_ACCESS_KEY;
 export default new Vuex.Store({
   state: {
     gallery: [],
-    currentTerm: ""
+    currentTerm: "",
   },
   plugins: [vuexLocal.plugin],
   getters: {
@@ -26,7 +26,7 @@ export default new Vuex.Store({
     },
     getGallery(state) {
       return state.gallery;
-    }
+    },
   },
   mutations: {
     createGallery(state, list) {
@@ -34,7 +34,7 @@ export default new Vuex.Store({
     },
     searchedGallery(state, list) {
       state.gallery = list;
-    }
+    },
   },
   actions: {
     async createGallery({ commit }) {
@@ -43,7 +43,7 @@ export default new Vuex.Store({
         //   `https://api.unsplash.com/search/photos?page=1&per_page=8&order_by=latest&query=african&client_id=${clientId}`
         // );
         let response = await axios.get(
-          `https://api.unsplash.com/photos/random?count=10&query=africa&order_by=latest&client_id=${clientId}`
+          `https://api.unsplash.com/photos/random?count=9&query=africa&order_by=latest&client_id=${clientId}`
         );
         console.log(response.data);
         commit("createGallery", response.data);
@@ -54,11 +54,10 @@ export default new Vuex.Store({
     },
     async searchGallery({ state, commit }, criteria) {
       try {
-        
         let response = await axios.get(`
-        https://api.unsplash.com/search/photos?page=1&query=${criteria}&client_id=${clientId}
+        https://api.unsplash.com/search/photos?page=1&per_page=9&query=${criteria}&client_id=${clientId}
         `);
-        
+
         let allItems = response.data.results;
         state.currentTerm = criteria;
         commit("searchedGallery", allItems);
@@ -66,7 +65,7 @@ export default new Vuex.Store({
         console.log(error);
         commit("searchedGallery", []);
       }
-    }
+    },
   },
-  modules: {}
+  modules: {},
 });

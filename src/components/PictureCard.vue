@@ -1,6 +1,11 @@
 <template>
-  <figure class="photo skeletal__loader">
-    <img :src="item.urls.small" alt="" class="photo__img" />
+  <figure class="photo">
+    <img
+      :src="item.urls.small"
+      :alt="item.alt_description"
+      class="photo__img"
+      loading="lazy"
+    />
     <figcaption>
       <h3>{{ item.user.first_name }} {{ item.user.last_name }}</h3>
       <p>
@@ -15,6 +20,7 @@ export default {
   name: "PictureCard",
   props: {
     item: Object,
+    isLoading: Boolean,
   },
 };
 </script>
@@ -32,12 +38,11 @@ export default {
     content: "";
     width: 100%;
     height: 100%;
-
     position: absolute;
     z-index: 1;
     /* color: hsl(40, 7%, 9%); */
     background: linear-gradient(
-      to top,
+      to bottom,
       hsla(40, 70%, 9%, 0.13) 0,
       hsla(40, 70%, 9%, 0.23) 3.5%,
       hsla(40, 70%, 9%, 0.35) 17%,
@@ -68,14 +73,6 @@ figcaption {
 
   p {
     font-size: 0.9rem;
-  }
-}
-
-.skeletal__loader {
-  img:empty {
-    width: 100%;
-    height: 100%;
-    background: hsl(0, 0%, 96%);
   }
 }
 </style>
