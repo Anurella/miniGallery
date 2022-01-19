@@ -25,11 +25,13 @@ export default {
 :root {
   --primary-bg: hsl(215, 22%, 89%);
   --text-color: hsl(217, 46%, 23%);
+  --text-color-2: hsl(223, 23%, 36%);
   --black: hsl(0, 0%, 7%);
   --white: hsl(0, 0%, 98.04%);
   --body-bg: hsl(210, 10%, 96.08%);
   --photo-overlay: hsla(40, 7%, 9%, 0.125);
   --stroke: hsl(208.24, 100%, 6.67%);
+  --radius: 8px;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -38,6 +40,7 @@ export default {
     --primary-bg: hsl(213, 18.18%, 21.57%);
     --body-bg: hsl(210, 32.26%, 12.16%);
     --text-color: hsl(228, 13.16%, 85.1%);
+    --text-color-2: hsl(226, 14%, 82%);
     --stroke: hsl(217, 14%, 52%);
   }
 }

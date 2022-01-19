@@ -1,5 +1,5 @@
 <template>
-  <transition>
+  <transition name="modal-fade" mode="out-in">
     <div
       class="modal"
       role="dialog"
@@ -7,16 +7,42 @@
       aria-describedby="modalDescription"
     >
       <div class="modal__wrapper">
-        <div class="modal__backdrop">
-          <button class="modal__close">x</button>
-          <div class="content">
-            <figure>
-              <figcaption>
-                <h3 id="modalTitle">Name of Artist</h3>
-                <p class=""></p>
-              </figcaption>
-            </figure>
-          </div>
+        <button class="modal__close" @click="close">
+          <svg
+            width="14"
+            height="14"
+            viewBox="0 0 14 14"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M12.59 0L7 5.59L1.41 0L0 1.41L5.59 7L0 12.59L1.41 14L7 8.41L12.59 14L14 12.59L8.41 7L14 1.41L12.59 0Z"
+              fill=""
+            />
+          </svg>
+        </button>
+        <div class="modal__content">
+          <!-- <slot name="body"> </slot> -->
+          <figure class="photo__enlarge">
+            <img
+              :src="modalItem.urls.regular"
+              :alt="modalItem.alt_description"
+              width="100%"
+              height="500px"
+            />
+            <figcaption>
+              <h3>
+                {{ modalItem.user.first_name }} {{ modalItem.user.last_name }}
+              </h3>
+              <p>
+                {{
+                  modalItem.user.location
+                    ? `${modalItem.user.location}`
+                    : "World"
+                }}
+              </p>
+            </figcaption>
+          </figure>
         </div>
       </div>
     </div>
@@ -24,7 +50,141 @@
 </template>
 
 <script>
-export default {};
+export default {
+  name: "Modal",
+  props: ["modalItem"],
+  methods: {
+    close() {
+      this.$emit("close");
+    },
+  },
+};
 </script>
 
-<style lang="" scoped></style>
+<style lang="scss" scoped>
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  transform: translate(-50%, -50%);
+  backface-visibility: hidden;
+  opacity: 1;
+  z-index: 6;
+  color: var(--text-color);
+
+  &__wrapper {
+    background-color: hsla(228, 2%, 50%, 0.8);
+    height: 100%;
+    width: 100%;
+    display: grid;
+  }
+
+  &__content {
+    display: grid;
+    width: 45rem;
+    max-width: MIN(90vw, 650px);
+    overscroll-behavior-y: contain;
+    overflow-y: auto;
+    justify-self: center;
+    will-change: transform;
+    /* border-radius: var(--radius); */
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  &__close {
+    width: 50px;
+    height: 50px;
+    justify-self: flex-end;
+    padding: 0;
+    background: transparent;
+    top: 30px;
+    right: 30px;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+
+    svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    path {
+      fill: var(--white);
+    }
+
+    &:active {
+      outline-color: var(--white);
+    }
+
+    &:focus:not(:focus-visible) {
+      outline-color: var(--white);
+    }
+  }
+}
+
+/* transition */
+.modal-fade-enter,
+.modal-leave-to {
+  opacity: 0;
+  z-index: -1;
+}
+
+.modal-fade-enter-active {
+  transition: all 500ms cubic-bezier(0.44, 0.21, 0, 1);
+}
+
+.modal-fade-enter-active .modal__content {
+  opacity: 0;
+  transform: scale(3.4);
+  transition: all 300ms cubic-bezier(0.44, 0.21, 0, 1);
+}
+
+.modal-fade-leave-active {
+  animation: scaleOut 500ms cubic-bezier(0.75, 0, 1, 1);
+}
+
+.modal-fade-leave-active .modal__content {
+  animation: scaleOut 600ms cubic-bezier(0.75, 0, 1, 1);
+}
+
+.photo__enlarge {
+  img {
+    border-radius: var(--radius) var(--radius) 0 0;
+    max-height: 500px;
+    width: 100%;
+    object-fit: cover;
+  }
+  figcaption {
+    border-radius: 0 0 var(--radius) var(--radius);
+    padding: 20px 32px 32px;
+    background-color: var(--white);
+
+    p {
+      color: hsl(216, 13%, 59%);
+    }
+  }
+}
+
+:target {
+  opacity: 1;
+  z-index: 6;
+
+  &.out {
+    animation: scaleOut 600ms cubic-bezier(0.75, 0, 1, 1);
+  }
+}
+
+@keyframes scaleOut {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+</style>

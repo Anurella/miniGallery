@@ -24,7 +24,7 @@ export default {
   justify-content: flex-end;
   padding: 20px;
   gap: 10px;
-  border-radius: 8px;
+  border-radius: var(--radius);
   span {
     background: linear-gradient(
         to right,

@@ -111,7 +111,7 @@ section {
     height: 50px;
     color: var(--text-color);
     padding: 0 0 0 55px;
-    border-radius: 4px;
+    border-radius: calc(var(--radius) / 2);
     border: 1px solid hsl(217, 46%, 74%);
     outline: none;
     font-size: 1rem;
@@ -145,7 +145,7 @@ section {
     font-size: 1.8rem;
     color: var(--text-color);
     &:last-child {
-      color: hsl(216, 15%, 50%);
+      color: var(--text-color-2);
       font-weight: normal;
       text-transform: capitalize;
     }

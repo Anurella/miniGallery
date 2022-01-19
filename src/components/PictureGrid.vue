@@ -7,32 +7,54 @@
   <section
     v-else
     class="mansory"
-    :style="{ '--height': `${350 * (galleryList.length / 3)}px` }"
+    :style="{ '--height': `${360 * (galleryList.length / 3)}px` }"
   >
     <article
       v-for="(item, galleria) in galleryList"
       :key="galleria"
       class="mansory__item"
+      @click="viewModal(item)"
+      @keypress="viewModal(item)"
     >
       <picture-card :item="item"></picture-card>
     </article>
+    <modal
+      v-show="isModalVisible"
+      :modal-item="modalItem"
+      @close="closeModal"
+    ></modal>
   </section>
 </template>
 
 <script>
 import PictureCard from "./PictureCard.vue";
 import Skeletal from "./Skeletal.vue";
+import Modal from "./Modal.vue";
 
 export default {
   components: {
     PictureCard,
     Skeletal,
+    Modal,
   },
   props: {
     isLoading: { Boolean },
   },
   data() {
-    return {};
+    return {
+      isModalVisible: false,
+      modalItem: {
+        urls: {
+          regular: "",
+        },
+        alt_description: "",
+        user: {
+          first_name: "",
+          last_name: "",
+          location: "",
+        },
+      },
+    };
   },
   computed: {
     galleryList() {
@@ -47,6 +69,18 @@ export default {
       if (this.galleryList.length === 0) {
         this.$store.dispatch("createGallery");
       }
+    },
+    showModal() {
+      this.isModalVisible = true;
+    },
+    viewModal(item) {
+      this.modalItem = item;
+      setTimeout(() => {
+        this.isModalVisible = true;
+      }, 500);
+    },
+    closeModal() {
+      this.isModalVisible = false;
     },
   },
 };
@@ -64,12 +98,13 @@ export default {
 
   &__item {
     width: calc(50% - 10px);
+    cursor: zoom-in;
     @media screen and (max-width: 769px) {
       /* height: 250px; */
     }
 
     @media screen and (min-width: 769px) {
-      width: min(30%, 250px);
+      width: min(calc(31% - 10px), 258px);
 
       &:nth-child(3n + 1) {
         order: 1;
@@ -88,7 +123,7 @@ export default {
     /* height: 1140px; */
     height: var(--height);
     justify-content: flex-start;
-    align-content: flex-start;
+    align-content: space-between;
 
     &::before,
     &::after {

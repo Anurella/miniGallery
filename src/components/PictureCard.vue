@@ -29,7 +29,7 @@ export default {
 .photo {
   display: grid;
   grid: "a" "a" "a" "a";
-  border-radius: 8px;
+  border-radius: var(--radius);
   overflow: hidden;
   height: 100%;
   min-height: 250px;
@@ -69,7 +69,7 @@ img {
   width: 100%;
   height: 100%;
   grid-area: a;
-  border-radius: 8px;
+  border-radius: var(--radius);
   object-fit: cover;
 }
 
