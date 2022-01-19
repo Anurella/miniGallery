@@ -13,12 +13,15 @@ Using the [Unsplash API](https://unsplash.com/developers), you're to create a mi
 3. Users should see a skeleton loader while waiting for results
 4. Users can click on an image and see a modal showing a higher res.
 
-### Extras
+### Added Extras
 
-1. Added a different color scheme for users with Dark mode in OS setting
-   ![Close-up screenshot of the landing in dark mode](./docs/darkmode.png)
+1. A different color scheme for users with Dark mode in OS setting.
 
-2. Added a close button, so a user can reveal the search field without refreshing the page.
+![Close-up screenshot of the landing in dark mode](./docs/darkmode.png)
+
+2. A close button, so a user can reveal the search field without refreshing the page.
+
+3. If a user makes a search that returns no result, a close button that refreshes the page.
 
 ## Project setup
 
