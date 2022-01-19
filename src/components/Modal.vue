@@ -69,9 +69,7 @@ export default {
   height: 100%;
   width: 100%;
   overflow: hidden;
-  /* transform: translate(-50%, -50%); */
   backface-visibility: hidden;
-  /* opacity: 1; */
   z-index: 6;
   color: var(--text-color);
 
@@ -80,12 +78,13 @@ export default {
     height: 100%;
     width: 100%;
     display: grid;
+    place-content: center;
   }
 
   &__content {
     display: grid;
     width: 45rem;
-    max-width: MIN(90vw, 650px);
+    max-width: min(90vw, 650px);
     overscroll-behavior-y: contain;
     overflow-y: auto;
     justify-self: center;
@@ -95,12 +94,14 @@ export default {
 
   &__close {
     width: 50px;
-    height: 50px;
+    height: 48px;
     justify-self: flex-end;
     padding: 0;
     background: transparent;
-    top: 30px;
-    right: 30px;
+    bottom: 10px;
+    @media (min-width: 600px) {
+      left: 30px;
+    }
     cursor: pointer;
     display: grid;
     place-items: center;
@@ -127,7 +128,7 @@ export default {
 .photo__enlarge {
   img {
     border-radius: var(--radius) var(--radius) 0 0;
-    max-height: 500px;
+    max-height: min(60vh, 400px);
     width: 100%;
     object-fit: cover;
   }
@@ -153,7 +154,7 @@ export default {
 }
 
 .modal-enter-active {
-  transition: all 500ms;
+  transition: opacity 500ms;
 }
 
 .modal-leave-active {
