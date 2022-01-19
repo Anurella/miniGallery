@@ -28,7 +28,8 @@ export default {
 <style lang="scss" scoped>
 .photo {
   display: grid;
-  grid: "a" "a" "a" "a";
+  grid-template-areas: "a" "a";
+  grid-template-rows: 1fr;
   border-radius: var(--radius);
   overflow: hidden;
   height: 100%;

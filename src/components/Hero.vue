@@ -31,7 +31,7 @@
             <span>There are no pictures with term</span
             ><span> "{{ searchTerm }}"</span>
           </h2>
-          <button @click="refreshPage">x</button>
+          <close-button :onClick="refreshPage"></close-button>
         </template>
         <h2 v-else>
           <span>Searching for</span><span> "{{ searchTerm }}"</span>
@@ -41,14 +41,19 @@
         <h2>
           <span>Searched Results for </span><span> "{{ searchTerm }}"</span>
         </h2>
-        <button @click="showSearchBar">x</button>
+        <close-button :onClick="showSearchBar"></close-button>
       </template>
     </div>
   </section>
 </template>
 <script>
+import CloseButton from "./Button.vue";
+
 export default {
   name: "Hero",
+  components: {
+    CloseButton,
+  },
   data() {
     return {
       searchTerm: "",
@@ -149,16 +154,6 @@ section {
       font-weight: normal;
       text-transform: capitalize;
     }
-  }
-  button {
-    font-size: 0.9rem;
-    padding: 0;
-    background-color: var(--text-color);
-    color: var(--white);
-    cursor: pointer;
-    width: 30px;
-    height: 28px;
-    align-self: center;
   }
 }
 </style>

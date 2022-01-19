@@ -1,5 +1,5 @@
 <template>
-  <transition name="modal-fade" mode="out-in">
+  <transition name="modal" mode="out-in">
     <div
       class="modal"
       role="dialog"
@@ -64,14 +64,14 @@ export default {
 <style lang="scss" scoped>
 .modal {
   position: fixed;
-  top: 50%;
-  left: 50%;
+  top: 0;
+  left: 0;
   height: 100%;
   width: 100%;
   overflow: hidden;
-  transform: translate(-50%, -50%);
+  /* transform: translate(-50%, -50%); */
   backface-visibility: hidden;
-  opacity: 1;
+  /* opacity: 1; */
   z-index: 6;
   color: var(--text-color);
 
@@ -89,10 +89,8 @@ export default {
     overscroll-behavior-y: contain;
     overflow-y: auto;
     justify-self: center;
+    transition: all 0.3s;
     will-change: transform;
-    /* border-radius: var(--radius); */
-    transform: scale(1);
-    opacity: 1;
   }
 
   &__close {
@@ -126,31 +124,6 @@ export default {
   }
 }
 
-/* transition */
-.modal-fade-enter,
-.modal-leave-to {
-  opacity: 0;
-  z-index: -1;
-}
-
-.modal-fade-enter-active {
-  transition: all 500ms cubic-bezier(0.44, 0.21, 0, 1);
-}
-
-.modal-fade-enter-active .modal__content {
-  opacity: 0;
-  transform: scale(3.4);
-  transition: all 300ms cubic-bezier(0.44, 0.21, 0, 1);
-}
-
-.modal-fade-leave-active {
-  animation: scaleOut 500ms cubic-bezier(0.75, 0, 1, 1);
-}
-
-.modal-fade-leave-active .modal__content {
-  animation: scaleOut 600ms cubic-bezier(0.75, 0, 1, 1);
-}
-
 .photo__enlarge {
   img {
     border-radius: var(--radius) var(--radius) 0 0;
@@ -169,13 +142,27 @@ export default {
   }
 }
 
-:target {
-  opacity: 1;
-  z-index: 6;
+/* transition */
+.modal-enter {
+  z-index: -1;
+  opacity: 0;
+}
 
-  &.out {
-    animation: scaleOut 600ms cubic-bezier(0.75, 0, 1, 1);
-  }
+.modal-enter .modal__content {
+  transform: scale(2);
+}
+
+.modal-enter-active {
+  transition: all 500ms;
+}
+
+.modal-leave-active {
+  animation: scaleOut 500ms cubic-bezier(0.75, 0, 1, 1);
+}
+
+.modal-leave-active .modal__content {
+  transform: scale(0.3);
+  opacity: 0;
 }
 
 @keyframes scaleOut {

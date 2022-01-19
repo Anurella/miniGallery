@@ -75,7 +75,8 @@ export default {
     },
     viewModal(item) {
       this.modalItem = item;
-      setTimeout(() => {
+      clearInterval(waitTime);
+      let waitTime = setTimeout(() => {
         this.isModalVisible = true;
       }, 500);
     },

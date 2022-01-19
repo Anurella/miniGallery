@@ -25,7 +25,6 @@ export default {
   methods: {
     updateLoad(loadState) {
       this.isLoading = loadState;
-      console.log("updated", this.isLoading);
     },
     getCollection() {
       this.isLoading = true;
