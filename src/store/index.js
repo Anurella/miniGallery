@@ -37,7 +37,6 @@ export default new Vuex.Store({
         let response = await axios.get(
           `https://api.unsplash.com/photos/random?count=9&query=africa&order_by=latest&client_id=${clientId}`
         );
-        console.log(response.data);
         commit("createGallery", response.data);
       } catch (error) {
         console.log(error);
