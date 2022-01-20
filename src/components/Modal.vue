@@ -136,6 +136,7 @@ export default {
     border-radius: 0 0 var(--radius) var(--radius);
     padding: 20px 32px 32px;
     background-color: var(--white);
+    text-transform: capitalize;
 
     p {
       color: hsl(216, 13%, 59%);
@@ -153,12 +154,13 @@ export default {
   transform: scale(2);
 }
 
-.modal-enter-active {
-  transition: opacity 500ms;
-}
-
-.modal-leave-active {
-  animation: scaleOut 500ms cubic-bezier(0.75, 0, 1, 1);
+@media (prefers-reduced-motion: no-preference) {
+  .modal-enter-active {
+    transition: opacity 500ms;
+  }
+  .modal-leave-active {
+    animation: scaleOut 500ms cubic-bezier(0.75, 0, 1, 1);
+  }
 }
 
 .modal-leave-active .modal__content {
