@@ -16,8 +16,7 @@ Using the [Unsplash API](https://unsplash.com/developers), you're to create a mi
 ### Added Extras
 
 1. A toggle to switch between light and dark mode.
-
-![Close-up screenshot of the landing in dark mode](./docs/screen_dark.png)
+   Reason: I have grown accustomed to dark colors. The initial styling was dependent on OS setting for dark mode but someone viewing this might want the option to switch irrespective of OS setting.
 
 2. A close button, so a user can reveal the search field without refreshing the page.
 

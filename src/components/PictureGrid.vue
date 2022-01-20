@@ -75,6 +75,8 @@ export default {
     },
     viewModal(item) {
       this.modalItem = item;
+      /* this delay allows for the image 
+      to load a bit before showing the modal, else there is a little glitch of image swap */
       clearInterval(waitTime);
       let waitTime = setTimeout(() => {
         this.isModalVisible = true;
